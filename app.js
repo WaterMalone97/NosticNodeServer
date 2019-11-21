@@ -16,12 +16,15 @@ app.get('/login', function (req, res) {
     res.redirect('https://accounts.spotify.com/authorize?' + querystring.stringify({
         client_id: client_id,
         response_type: 'code',
-        redirect_uri: redirect_uri
+        redirect_uri: redirect_uri,
+        scope: 'user-top-read'
         })
     );
 });
 
 app.get('/callback', function (req, res) {
+    let accessToken;
+    let refreshToken;
     res.send('Callback')
     let code = req.query.code || null;
     let authOptions = {
@@ -39,24 +42,29 @@ app.get('/callback', function (req, res) {
 
     request.post(authOptions, (err, response, body) => {
         if (!response.error) {
-            let accessToken = body.access_token;
-            let refreshToken = body.refresh_token;
-            console.log(body);
-            let options = {
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                    'Authorization': 'Bearer ' + accessToken
-                },
-                json: true
-            };
-            request.get(options, (err, res, body) => {
-                console.log(body);
-            });
+            accessToken = body.access_token;
+            refreshToken = body.refresh_token;
         } 
         else {
             throw new Error(res.error, res.error.message);
         }
     });
+
+    res.json({accessToken, refreshToken});
 });
+
+app.get('/topSongs', function (req, res) {
+    console.log(this.accessToken)
+    let options = {
+        url: 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=0',
+        headers: {
+            'Authorization': 'Bearer ' + this.accessToken
+        },
+        json: true
+    };
+    request.get(options, (err, response, body) => {
+        res.send(body.items.map(item => item.name));
+    });
+})
 
 app.listen(port, ipAddress, () => console.log('Listening on port', port));
