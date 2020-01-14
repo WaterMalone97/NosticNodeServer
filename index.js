@@ -14,6 +14,8 @@ db.once('open', () => console.log('Connected to database'));
 app.use(express.json());
 
 const userRouter = require('./routes/users');
+const songRouter = require('./routes/songs');
 app.use('/users', userRouter);
+app.use('/songs', songRouter);
 
 app.listen(port, ipAddress, () => console.log('Listening on port', port));

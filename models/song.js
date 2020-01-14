@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const songSchema = new mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    song_ids: {
-        type: Array,
-        required: false
-    }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Song', songSchema);

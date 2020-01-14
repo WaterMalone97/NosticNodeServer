@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+    console.log('Received Login Request')
     res.redirect('https://accounts.spotify.com/authorize?' + querystring.stringify({
         client_id: process.env.client_id,
         response_type: 'code',
