@@ -1,0 +1,15 @@
+{
+    "name": "Nostic Server",
+    "description": "The node.js server for Nostic",
+    "repository": "https://github.com/WaterMalone97/SpotifyApp.git",
+    "logo": "https://99logodesigns.com/wp-content/uploads/2019/06/Cool-N-design-by-@steveraboin-%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2-758x758.jpg",
+    "keywords": ["node", "express", "static"],
+    "image": "heroku/node.js",
+    "env": {
+        "DATABASE_URL": "mongodb+srv://WaterMalone:asdfasdf@nostic-pgnd8.mongodb.net/test?retryWrites=true&w=majority",
+        "redirect_uri": "http://192.168.1.106:8080/users/callback",
+        "client_id": "0357dcfe53504cadb8b0aa95bb31c8a2",
+        "client_secret": "45cb9aeb95934615a1603d955cedecb7",
+        "ipAddress": "192.168.1.106"
+      }
+}
