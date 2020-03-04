@@ -1,14 +1,17 @@
 const defaultState = {
-  input: ''
+  input: '',
+  results: []
 }
 
-const userReducer = (state = defaultState, action) => {
+const searchReducer = (state = defaultState, action) => {
   switch (action.type) {
       case "SEARCH_SONG":
-          return {state};
+          return {input: action.input, results: action.data};
+      case "REQUEST_SEARCH":
+          return {...state, input: action.input};
       default:
           return state;
   }
 }
 
-export default userReducer;
+export default searchReducer;
