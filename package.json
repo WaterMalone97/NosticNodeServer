@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "core-util-is": "^1.0.2",
+    "env": "0.0.2",
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "mongo-sanitize": "^1.1.0",
